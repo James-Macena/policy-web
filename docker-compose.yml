@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16.2
+    container_name: policy-web-postgres
+    hostname: ${POSTGRES_HOST}
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+    env_file: .env
+    healthcheck:
+      test: pg_isready -U ${POSTGRES_USER}
+      interval: 1m30s
+  app:
+    build: .
+    container_name: policy-web-app
+    user: ${UID}:${GID}
+    depends_on:
+      db:
+        condition: service_started
+        restart: true
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/opt/policy-web
+      - rubygems:/usr/local/bundle
+    command: bash -c 'bundle exec rails s -b 0.0.0.0'
+volumes:
+  rubygems:
+  postgres_data:
