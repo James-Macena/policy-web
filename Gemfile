@@ -6,6 +6,8 @@ ruby '3.1.4'
 
 gem 'bootsnap', require: false
 gem 'importmap-rails'
+gem 'omniauth-google-oauth2', '~> 1.1'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
@@ -15,6 +17,7 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
+  gem 'dotenv-rails', '~> 3.1'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'pry-byebug', '~> 3.10', '>= 3.10.1'
   gem 'rspec-rails'
