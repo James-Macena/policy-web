@@ -4,7 +4,9 @@ services:
     container_name: policy-web-postgres
     hostname: ${POSTGRES_HOST}
     ports:
-      - 5432:5432
+      - 5436:5436
+    networks:
+      - policy-base_default
     volumes:
       - postgres_data:/var/lib/postgres/data
     env_file: .env
@@ -14,17 +16,22 @@ services:
   app:
     build: .
     container_name: policy-web-app
-    user: ${UID}:${GID}
+    # user: ${UID}:${GID}
     depends_on:
       db:
         condition: service_started
         restart: true
     ports:
       - 3000:3000
+    networks:
+      - policy-base_default
     volumes:
       - .:/opt/policy-web
       - rubygems:/usr/local/bundle
     command: bash -c 'bundle exec rails s -b 0.0.0.0'
+networks:
+  policy-base_default:
+    external: true
 volumes:
   rubygems:
   postgres_data:

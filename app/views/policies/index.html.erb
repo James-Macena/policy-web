@@ -1,0 +1,26 @@
+<h1>Policies List</h1>
+
+<% if @policies.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Insured</th>
+        <th>Document</th>
+        <th>Plate</th>
+        <th>Validity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @policies.map do |policy| %>
+        <tr>
+          <td><%= policy[:insured][:name] %></td>
+          <td><%= policy[:insured][:documentNumber] %></td>
+          <td><%= policy[:vehicle][:plate] %></td>
+          <td><%= policy[:validity] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>There are no policies for now</p>
+<% end %>

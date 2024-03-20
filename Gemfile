@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 ruby '3.1.4'
 
 gem 'bootsnap', require: false
+gem 'faraday', '~> 2.9'
 gem 'importmap-rails'
 gem 'omniauth-google-oauth2', '~> 1.1'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
