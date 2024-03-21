@@ -9,7 +9,7 @@ class PoliciesController < ApplicationController
       'Content-Type': 'application/json'
     )
 
-    @policies = JSON
-      .parse(response.body, symbolize_names: true)[:data][:policies]
+    @policies = JSON.parse(response.body, symbolize_names: true)
+                    .dig(:data, :policies)
   end
 end
