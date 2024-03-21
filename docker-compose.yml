@@ -16,7 +16,6 @@ services:
   app:
     build: .
     container_name: policy-web-app
-    # user: ${UID}:${GID}
     depends_on:
       db:
         condition: service_started
