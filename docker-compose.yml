@@ -12,13 +12,13 @@ services:
     env_file: .env
     healthcheck:
       test: pg_isready -U ${POSTGRES_USER}
-      interval: 1m30s
+      interval: 3s
   app:
     build: .
     container_name: policy-web-app
     depends_on:
       db:
-        condition: service_started
+        condition: service_healthy
         restart: true
     ports:
       - 3000:3000
