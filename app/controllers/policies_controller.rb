@@ -7,7 +7,7 @@ class PoliciesController < ApplicationController
       "#{ENV.fetch('POLICY_API_URL')}/graphql",
       { query: query_string }.to_json,
       'Content-Type': 'application/json',
-      'Authorization': "Bearer #{session[:user_token]}"
+      Authorization: "Bearer #{session[:user_token]}"
     )
 
     @policies = JSON.parse(response.body, symbolize_names: true)
