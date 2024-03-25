@@ -7,6 +7,7 @@ ruby '3.1.4'
 gem 'bootsnap', require: false
 gem 'faraday', '~> 2.9'
 gem 'importmap-rails'
+gem 'omniauth-cognito-idp', '~> 0.1.1'
 gem 'omniauth-google-oauth2', '~> 1.1'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pg', '~> 1.1'

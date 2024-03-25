@@ -160,6 +160,9 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
+    omniauth-cognito-idp (0.1.1)
+      jwt
+      omniauth-oauth2
     omniauth-google-oauth2 (1.1.1)
       jwt (>= 2.0)
       oauth2 (~> 2.0.6)
@@ -321,6 +324,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.4)
   faraday (~> 2.9)
   importmap-rails
+  omniauth-cognito-idp (~> 0.1.1)
   omniauth-google-oauth2 (~> 1.1)
   omniauth-rails_csrf_protection (~> 1.0)
   pg (~> 1.1)
