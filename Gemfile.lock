@@ -324,6 +324,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.4)
   faraday (~> 2.9)
   importmap-rails
+  jwt
   omniauth-cognito-idp (~> 0.1.1)
   omniauth-google-oauth2 (~> 1.1)
   omniauth-rails_csrf_protection (~> 1.0)

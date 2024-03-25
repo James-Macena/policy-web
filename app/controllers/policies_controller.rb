@@ -6,7 +6,8 @@ class PoliciesController < ApplicationController
     response = Faraday.post(
       "#{ENV.fetch('POLICY_API_URL')}/graphql",
       { query: query_string }.to_json,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer #{session[:user_token]}"
     )
 
     @policies = JSON.parse(response.body, symbolize_names: true)
