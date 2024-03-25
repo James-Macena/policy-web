@@ -12,4 +12,4 @@ test:
 
 # runs rubocop(ex: make rubocop path=my/path)
 rubocop:
-	docker compose run -it --rm app bash -c "bundle exec rubocop --format=simple ${path}"
+	docker compose run -it --no-deps --rm app bash -c "bundle exec rubocop --format=simple ${path}"
