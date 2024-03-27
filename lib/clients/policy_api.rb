@@ -13,7 +13,7 @@ module Clients
 
       response = perform_request(query_string)
       response.body.with_indifferent_access
-                   .dig(:data, :policies)
+              .dig(:data, :policies)
     end
 
     private
