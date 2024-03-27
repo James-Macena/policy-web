@@ -6,7 +6,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            client_options: {
              site: ENV['COGNITO_USER_POOL_SITE']
            },
-           name: 'cognito_idp'
+           name: 'cognito_idp',
            scope: 'email openid',
            user_pool_id: ENV['COGNITO_USER_POOL_ID'],
            aws_region: ENV['AWS_REGION']
