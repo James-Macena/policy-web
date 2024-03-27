@@ -2,15 +2,12 @@
 
 class PoliciesController < ApplicationController
   def index
-    query_string = GraphqlQueryString.policies
-    response = Faraday.post(
-      "#{ENV.fetch('POLICY_API_URL')}/graphql",
-      { query: query_string }.to_json,
-      'Content-Type': 'application/json',
-      Authorization: "Bearer #{session[:user_token]}"
-    )
+    @policies = policy_api_client.list_policies
+  end
 
-    @policies = JSON.parse(response.body, symbolize_names: true)
-                    .dig(:data, :policies)
+  private
+
+  def policy_api_client
+    Clients::PolicyApi.new(session[:user_token])
   end
 end
