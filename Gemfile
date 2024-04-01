@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 ruby '3.1.4'
 
 gem 'bootsnap', require: false
+gem 'devise', '~> 4.9'
 gem 'faraday', '~> 2.9'
 gem 'importmap-rails'
 gem 'jwt'
