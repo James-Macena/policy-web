@@ -1,26 +1,85 @@
-<h1>Policies List</h1>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
 
-<% if @policies.present? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Insured</th>
-        <th>Document</th>
-        <th>Plate</th>
-        <th>Validity</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @policies.map do |policy| %>
-        <tr>
-          <td><%= policy[:insured][:name] %></td>
-          <td><%= policy[:insured][:documentNumber] %></td>
-          <td><%= policy[:vehicle][:plate] %></td>
-          <td><%= policy[:validity] %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>There are no policies for now</p>
-<% end %>
+  table {
+    margin-top: 10px;
+  }
+
+  th {
+    padding: 2px;
+    background-color: #acb2b7;
+  }
+
+  td {
+    text-align: center;
+    background-color: #e7ebef;
+  }
+
+  .policies_list {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 28px;
+  }
+
+  .new_policy_button {
+    max-width: 86px;
+    margin-bottom: 8px;
+    padding: 2px;
+    font-family: system-ui;
+    font-size: small;
+    font-weight: 500;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #9cebad;
+  }
+
+  .new_policy_button:hover {
+    background-color: #6da479;
+  }
+</style>
+
+
+<div class='policies_list' >
+  <h1>Lista de Apólices</h1>
+
+  <div class='content'>
+    <%= link_to 'Criar apólice', new_policy_path, class: 'new_policy_button' %>
+
+    <% if @policies.present? %>
+      <table>
+        <thead>
+          <tr>
+            <th>Segurado</th>
+            <th>Documento</th>
+            <th>Placa</th>
+            <th>Vigência</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @policies.map do |policy| %>
+            <tr>
+              <td><%= policy[:insured][:name] %></td>
+              <td><%= policy[:insured][:documentNumber] %></td>
+              <td><%= policy[:vehicle][:plate] %></td>
+              <td><%= policy[:validity] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Ainda não há apólices</p>
+    <% end %>
+  </div>
+</div>

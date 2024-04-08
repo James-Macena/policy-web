@@ -10,9 +10,73 @@
     <%= javascript_importmap_tags %>
   </head>
 
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f8ff;
+      margin: 0px;
+    }
+
+    main {
+      width: 60%;
+      height: 80%;
+      padding: 16px;
+      border-radius: 12px;
+      background-color: white;
+      align-items: center;
+      box-shadow: 0 0 4px 2px #d8dfe5;
+    }
+
+    .notice {
+      padding: 4px;
+      width: fit-content;
+      min-width: 200px;
+      min-height: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #d7ecff;
+      border: 1px solid #4f9ee5;
+      border-radius: 6px;
+      color: #000000;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+
+    .alert {
+      padding: 4px;
+      width: fit-content;
+      min-width: 200px;
+      min-height: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fffff0;
+      border: 1px solid #e5e54f;
+      border-radius: 6px;
+      color: #000000;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+
+  </style>
+
   <body>
-    <p><%= notice %></p>
-    <p><%= alert %></p>
-    <%= yield %>
+    <% if notice %>
+      <span class='notice'><%= notice %></span>
+    <% end %>
+    <% if alert %>
+      <span class='alert'><%= alert %></span>
+    <% end %>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
