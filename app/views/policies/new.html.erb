@@ -1,0 +1,140 @@
+<style>
+  .form-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-content {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 200px 200px;
+    row-gap: 6px;
+  }
+
+  .title {
+    grid-column: 1 / span 2;
+  }
+
+  .field {
+    margin-top: 4px;
+  }
+
+  .radio-items {
+    display: flex;
+    gap: 16px;
+  }
+
+  .radio-item {
+    display: flex;
+    gap: 4px;
+  }
+
+  .radio-button {
+    margin: 0 0 2px;
+  }
+
+  .actions {
+    margin-top: 20%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .back {
+    width: 40%;
+    min-width: 42px;
+    max-width: 82px;
+    padding: 4px;
+    font-family: system-ui;
+    font-size: small;
+    font-weight: 500;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #e7ebef;
+  }
+
+  .submit {
+    width: 40%;
+    min-width: 96px;
+    max-width: 100px;
+    padding: 4px;
+    font-family: system-ui;
+    font-size: small;
+    font-weight: 500;
+    color: black;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #9cebad;
+    cursor: pointer;
+  }
+
+  .back:hover {
+    background-color: #acb2b7;
+  }
+  .submit:hover {
+    background-color: #6da479;
+  }
+</style>
+
+<div class='form-container'>
+  <%= form_with scope: :policy, url: policies_path, class: 'policy-form' do |form| %>
+    <div class='form-content'>
+      <%= form.fields_for :vehicle do |vehicle_fields| %>
+        <h3 class='title'>Dados do veículo</h3>
+        <div>
+          <%= form.label 'Placa:' %>
+          <%= vehicle_fields.text_field :plate, class: 'field' %>
+        </div>
+        <div>
+          <%= form.label 'Modelo:' %>
+          <%= vehicle_fields.text_field :model, class: 'field' %>
+        </div>
+        <div>
+          <%= form.label 'Marca:' %>
+          <%= vehicle_fields.text_field :make, class: 'field' %>
+        </div>
+        <div>
+          <%= form.label 'Ano:' %>
+          <%= vehicle_fields.text_field :year, class: 'field' %>
+        </div>
+      <% end %>
+
+      <%= form.fields_for :insured do |insured_fields| %>
+        <h3 class='title'>Dados do segurado</h3>
+        <div>
+          <%= form.label 'Nome completo:' %>
+          <%= insured_fields.text_field :name, class: 'field' %>
+        </div>
+        <div>
+          <%= form.label 'Selecione o documento:' %>
+          <%= insured_fields.select :document_type, %w[CPF CNPJ], {}, class: 'field' %>
+        </div>
+        <div>
+          <%= form.label 'Número do documento:' %>
+          <%= insured_fields.text_field :document_number, class: 'field' %>
+        </div>
+      <% end %>
+
+      <h3 class='title'>Duração do contrato</h3>
+      <div class='radio-items'>
+        <div class='radio-item'>
+          <%= form.radio_button :validity, 1.year.from_now.to_date, class: 'radio-button' %>
+          <%= form.label '1 ano' %>
+        </div>
+        <div class='radio-item'>
+          <%= form.radio_button :validity, 2.years.from_now.to_date, class: 'radio-button' %>
+          <%= form.label '2 anos' %>
+        </div>
+      </div>
+    </div>
+
+    <div class='actions'>
+      <%= link_to 'Voltar', root_path, class: 'back' %>
+      <%= form.submit 'Emitir apólice', class: 'submit' %>
+    </div>
+  <% end %>
+</div>

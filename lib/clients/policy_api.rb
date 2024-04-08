@@ -16,6 +16,14 @@ module Clients
               .dig(:data, :policies)
     end
 
+    def create_policy(params)
+      query_string = GraphqlQueryString.create_policy(params)
+      response = perform_request(query_string)
+
+      response.body.with_indifferent_access
+              .dig(:data, :createPolicy)
+    end
+
     private
 
     def perform_request(query_string)
